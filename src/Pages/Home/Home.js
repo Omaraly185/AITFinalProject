@@ -19,7 +19,7 @@ const Home = (props) => {
   const fetchEvents = async () => {
     try {
       const response = await fetch(
-        "aitfinalprojectapi-production.up.railway.app/events"
+        "https://aitfinalprojectapi-production.up.railway.app/events"
       );
       const events = await response.json();
       console.log(events);
