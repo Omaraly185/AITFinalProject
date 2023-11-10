@@ -1,0 +1,59 @@
+.rbc-calendar {
+  height: 93vh !important;
+  width: 95%;
+  margin-top: 20px;
+  margin-left: 2.5%;
+  text-align: center;
+}
+.testing {
+  margin-block: 10px;
+}
+.rbc-agenda-view {
+  background-color: white;
+}
+.rbc-toolbar {
+  background-color: #01b4fa;
+}
+.rbc-button-link {
+  color: #ecd270 !important;
+}
+.rbc-month-row {
+  background-color: black;
+}
+.rbc-month-view .rbc-day-bg:hover {
+  cursor: pointer;
+  background-color: #01b4fa !important;
+}
+.rbc-off-range-bg {
+  background-color: #aaa5a5 !important;
+}
+.rbc-month-header {
+  background-color: black;
+  color: #ecd270;
+}
+
+.rbc-time-view .rbc-row {
+  box-sizing: border-box;
+  border: rgb(149, 93, 93);
+}
+.rbc-timeslot-group {
+  background-color: black;
+  color: wheat;
+}
+.rbc-allday-cell {
+  display: none !important;
+}
+
+.rbc-toolbar .rbc-toolbar-label {
+  flex-grow: 1;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 34px;
+  margin-right: 75px;
+  font-weight: 700;
+}
+
+.myCustomHeight {
+  margin-top: 3.95rem;
+  height: 100vh;
+}
