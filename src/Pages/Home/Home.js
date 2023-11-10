@@ -9,9 +9,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 const Home = (props) => {
-  const [showPanel, setShowPanel] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
 
@@ -21,7 +18,9 @@ const Home = (props) => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:4000/events");
+      const response = await fetch(
+        "aitfinalprojectapi-production.up.railway.app"
+      );
       const events = await response.json();
       console.log(events);
       setEvents(events);
@@ -32,17 +31,6 @@ const Home = (props) => {
     }
   };
 
-  const formatDate = (start) => {
-    const dateString = start;
-    const date = new Date(dateString);
-    const formattedDate = date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-    return formattedDate;
-  };
-
   const handleSelectSlot = (slotInfo) => {
     const { start, action } = slotInfo;
     if (action === "click" || action === "select") {
@@ -50,24 +38,7 @@ const Home = (props) => {
         toast.error("You can't select a date before today!");
         return;
       }
-
-      setSelectedDate(formatDate(start));
-      setSelectedTime("");
-      setShowPanel(true);
     }
-  };
-
-  const handleTimeSelect = (date, time) => {
-    setShowPanel(false);
-
-    const selectedTimeString = `${date} ${time}`;
-    const eventDate = new Date(selectedTimeString);
-    const newEvent = {
-      title: "",
-      start: eventDate,
-      end: eventDate,
-    };
-    setEvents([...events, newEvent]);
   };
 
   if (loading) {
