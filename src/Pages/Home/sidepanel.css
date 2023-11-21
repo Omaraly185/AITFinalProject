@@ -1,0 +1,180 @@
+.panel {
+  position: fixed;
+  top: 61px;
+  right: 0;
+  bottom: 0;
+  width: 56vmin;
+  z-index: 8;
+  overflow-y: auto;
+  background-color: #fffbfb;
+  box-shadow: 0 0 1.6vmin rgba(0, 0, 0, 0.5);
+}
+
+.panel-close-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+}
+
+.panel-close-button:before,
+.panel-close-button:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 50%;
+  background-color: rgb(11, 11, 11);
+  transition: width 0.2s ease-out;
+}
+
+.panel-close-button:before {
+  transform: rotate(45deg);
+  left: 7px;
+  top: 7px;
+  transform-origin: left;
+}
+
+.panel-close-button:after {
+  transform: rotate(-45deg);
+  right: 7px;
+  top: 7px;
+  transform-origin: right;
+}
+
+.panel-close-button .inner-content {
+  color: rgb(8, 7, 7);
+}
+
+.panel-close-button .inner-content:before,
+.panel-close-button .inner-content:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 50%;
+  background-color: rgb(13, 11, 11);
+  transition: width 0.2s ease-out;
+}
+
+.panel-close-button .inner-content:before {
+  transform: rotate(45deg);
+  transform-origin: right;
+  bottom: 6px;
+  right: 8px;
+}
+
+.panel-close-button .inner-content:after {
+  transform: rotate(-45deg);
+  transform-origin: left;
+  bottom: 6px;
+  left: 8px;
+}
+
+.panel-close-button .label {
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.panel-close-button:focus:before,
+.panel-close-button:hover:before,
+.panel-close-button:focus:after,
+.panel-close-button:hover:after {
+  width: 10px;
+}
+
+.panel-close-button:focus .inner-content:before,
+.panel-close-button:hover .inner-content:before,
+.panel-close-button:focus .inner-content:after,
+.panel-close-button:hover .inner-content:after {
+  width: 10px;
+}
+
+.panel-close-button:focus .label,
+.panel-close-button:hover .label {
+  opacity: 1;
+}
+
+.slide-in {
+  transform: translateX(0%);
+}
+
+.slide-out {
+  transform: translateX(-100%);
+}
+
+.panel-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.available-times {
+  column-count: 2;
+}
+
+.available-time-button {
+  margin: 20px;
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.available-time-button:hover {
+  background-color: #01b4fa;
+}
+.side-form {
+  margin-top: 20px;
+}
+
+.side-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.side-form input {
+  width: 65%;
+  height: 20px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.side-form button[type="submit"] {
+  width: 50%;
+  height: 30px;
+  margin-top: 16px;
+  background-color: #01b4fa;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.side-form button[type="cancel"] {
+  width: 50%;
+  height: 30px;
+  margin-top: 16px;
+  background-color: #fa0101;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.side-form button[type="submit"]:hover {
+  background-color: #008ac7;
+}
+
+@media all and (max-width: 750px) {
+  .available-times {
+    column-count: 1;
+  }
+}
