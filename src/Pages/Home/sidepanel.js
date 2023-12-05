@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./sidepanel.css";
+import { useSelector } from "react-redux";
 
 function Sidepanel(props) {
   const [loading, setLoading] = useState(false);
-  const { showPanel, selectedDate, events, setShowPanel } = props;
+  const { showPanel, selectedDate, events, setShowPanel, handleTimeSelect } =
+    props;
+  const name = useSelector((state) => state.bookingForm.name);
+  const message = useSelector((state) => state.bookingForm.message) || "";
+  const phoneNumber = useSelector((state) => state.bookingForm.phoneNumber);
+  const email = useSelector((state) => state.bookingForm.email);
+  const hoto = useSelector((state) => state.bookingForm);
 
+  console.log(hoto);
   const arrayAT = [
     "7:00 AM",
     "8:00 AM",
@@ -17,16 +26,16 @@ function Sidepanel(props) {
     "3:00 PM",
   ];
 
-  const [sidePanelOpen, setSidePanelOpen] = useState(false);
+  const [submitTimeForm, setsubmitTimeForm] = useState(false);
   const [selectedTime, setSelectedTime] = useState("");
 
-  const togglePanel = (time) => {
+  const toggleCreditcard = (time) => {
     setSelectedTime(time);
-    setSidePanelOpen(true);
+    setsubmitTimeForm(true);
   };
 
   const handleFormSubmit = async (e) => {
-    let appointmentLength = 1;
+    let appointmentLength = 0;
 
     e.preventDefault();
     setLoading(true);
@@ -35,21 +44,23 @@ function Sidepanel(props) {
     const selectedDateTime = new Date(selectedDateTimeString);
     const endDateTime = new Date(selectedDateTime.getTime());
     const endTime = endDateTime.setHours(
-      selectedDateTime.getHours() + appointmentLength
+      selectedDateTime.getHours() + appointmentLength + 1
     );
 
     if (!selectedDate || !selectedTime) {
       console.error("Please select a date and time for the appointment.");
       return;
     }
-    console.log(selectedDate);
 
     const newEvent = {
+      email,
+      name,
+      phoneNumber,
       selectedDate,
       selectedTime,
       endTime,
-      description: `Zoom Meeting`,
-      location: ``,
+      message,
+      description: `zoom meeting with ${email}`,
     };
 
     try {
@@ -66,7 +77,6 @@ function Sidepanel(props) {
 
       if (response.ok) {
         console.log("Appointment created successfully");
-        window.location.reload();
       } else {
         console.error("Failed to create appointment");
       }
@@ -74,19 +84,19 @@ function Sidepanel(props) {
       console.error("Error creating appointment:", error);
     }
     setLoading(false);
-    setSidePanelOpen(false);
+    setsubmitTimeForm(false);
     handleClose();
+    window.location.reload();
   };
 
   const handleClose = () => {
     setShowPanel(false);
-    setSidePanelOpen(false);
   };
   const isTimeAvailable = (time) => {
     const selectedTimeString = `${selectedDate} ${time}`;
     const selectedTime = new Date(selectedTimeString);
 
-    let appointmentLength = 1;
+    let appointmentLength = 0;
     const dayOfWeek = selectedTime.getDay();
     if (dayOfWeek === 1 || dayOfWeek === 2 || dayOfWeek === 5) {
       return false;
@@ -117,7 +127,7 @@ function Sidepanel(props) {
               <span className="label">Close</span>
             </span>
           </button>
-          {!sidePanelOpen ? (
+          {!submitTimeForm ? (
             <>
               <div className="panel-title">
                 Available times for {selectedDate}
@@ -128,7 +138,7 @@ function Sidepanel(props) {
                     isTimeAvailable(time) ? (
                       <button
                         className="available-time-button"
-                        onClick={() => togglePanel(time)}
+                        onClick={() => toggleCreditcard(time)}
                         key={time}
                       >
                         {time}
@@ -145,7 +155,7 @@ function Sidepanel(props) {
               <div className="panel-title">
                 Confirm Appointment for {selectedDate} at {selectedTime}
               </div>
-              <form className="side-form" onSubmit={handleFormSubmit}>
+              <form className="credit-card-form" onSubmit={handleFormSubmit}>
                 Are you sure this is the appointment you'd like?
                 <button type="submit" disabled={loading}>
                   {loading ? "Loading..." : "Submit"}

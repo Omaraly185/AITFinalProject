@@ -1,0 +1,83 @@
+.contact-form-container {
+  padding: 20px;
+  border: 1px solid rgb(11, 2, 2);
+  box-shadow: 10px rgb(0, 0, 0);
+  background-color: rgb(56, 54, 54);
+  position: relative;
+  z-index: 2;
+  color: azure;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+}
+
+.inputForm {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: black;
+}
+
+.error {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 14px;
+  border-color: red;
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.bookformcontainer {
+  justify-content: space-between;
+  margin-left: 3%;
+  width: 90%;
+  margin-right: 20px;
+  min-height: 100vh;
+}
+
+@media (max-width: 750px) {
+  .bookformcontainer {
+    width: 93vw;
+  }
+}
+.package-dropdown {
+  background-color: #f0ecec;
+  color: rgb(36, 35, 35);
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.minecraft {
+  background-color: #6248b8;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+@media (max-width: 550px) {
+  .bookformcontainer {
+    min-height: 109vh;
+    width: 92vw;
+  }
+}
